@@ -1,0 +1,67 @@
+/*
+ * Type the message to be shortened
+This message could be a little shorter
+
+Shortened message: ths msg cld b a ltl shrtr
+Repeated letters removed: 2
+Vowels removed: 11
+Total characters saved: 13
+
+Otherwise, the message should be immediately converted to lowercase as this will make processing much easier.
+The program should then create a string in which every vowel (a, e, i, o, and u)
+from the message is removed unless the vowel is at the very start of a word (i.e., it is preceded by a space or is the first letter of the message). 
+The program should also remove every repeated non-vowel character 
+(i.e., if a character appears several times in a row it should only appear once at that location).
+*/
+
+import java.util.Scanner;
+import java.lang.Math; 
+
+class Main {
+    public static void main(String[] args)
+     {
+      Scanner scan = new Scanner(System.in);
+      String stringInput = scan.nextLine();
+      stringInput = stringInput.toLowerCase();
+      int stringCount = stringInput.length();
+      if (stringCount < 10){
+        System.out.println("This does not need shortening!");
+      }else{
+        String noVowel = "";
+        int countInput = 0;
+        int countVowel = 0;
+        int removeVowel = 0;
+        while(countInput < stringCount){
+          if ((stringInput.charAt(countInput) != 'a')&&
+             (stringInput.charAt(countInput) != 'e') && (stringInput.charAt(countInput) != 'i') &&
+              (stringInput.charAt(countInput) != 'o') && (stringInput.charAt(countInput) != 'u')){
+            noVowel = noVowel + stringInput.charAt(countInput);
+            removeVowel++;
+          }else{
+            countVowel++;
+          }
+          countInput++;
+        }
+        
+        String noDouble = " ";
+        int noLength = noVowel.length();
+        int countDouble = 0;
+        countInput = 0;
+        noDouble = noDouble + noVowel.charAt(countInput);
+        countInput = 1;
+        while(countInput < noLength - 1){
+          if( noVowel.charAt(countInput) != noVowel.charAt(countInput - 1) ) {
+            noDouble = noDouble + noVowel.charAt(countInput);
+          } else { 
+            countDouble++;
+          }
+          countInput++;
+        }
+        System.out.println("Shotened message: " + noDouble);
+        System.out.println("Repeated letters removed: " + countDouble);
+        System.out.println("Vowels removed: " + countVowel);
+        System.out.println("Total characters saved: " + (countDouble + countVowel));
+                           
+                           }
+}
+}
